@@ -242,4 +242,3 @@ fabric.properties
 /home/migrations/0004_rename_name_skill_libraries_skill_professional.py
 /home/migrations/0005_remove_skill_libraries_alter_skill_professional.py
 /home/migrations/0006_tech_rename_professional_skill_name.py
-/static/assets/favicon.ico

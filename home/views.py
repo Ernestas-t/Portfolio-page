@@ -64,7 +64,7 @@ def updateProject(request):
         form = ProjectForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('resume')
+            return redirect('projects')
     context = {'form': form}
     return render(request, 'home/update_project.html', context)
 
