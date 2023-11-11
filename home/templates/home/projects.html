@@ -23,7 +23,9 @@
                                             <p>{{ project.description }}</p>
 
                                             <!-- Delete Button -->
+                                            {% if request.user.is_authenticated %}
                                             <a href="{% url 'delete-data' project.id%}?data=project" class="btn btn-danger">Delete</a>
+                                            {% endif %}
                                         </div>
                                         <img class="img-fluid" src="{{ project.image_url }}" alt="..." />
                                     </div>

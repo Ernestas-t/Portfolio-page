@@ -38,7 +38,7 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
-ALLOWED_HOSTS = ['ed7f-88-119-116-22.ngrok-free.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['7272-88-119-116-22.ngrok-free.app', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -148,3 +148,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = ['https://7272-88-119-116-22.ngrok-free.app']

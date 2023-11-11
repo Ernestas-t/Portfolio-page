@@ -11,4 +11,6 @@ urlpatterns = [
     path('update-project/', views.updateProject, name='update-project'),
     path('add-item/', views.addItem, name='add-item'),
     path('delete-data/<str:pk>', views.deleteData, name='delete-data'),
+    path('login/', views.loginUser, name='login'),
+    path('logout/', views.logoutUser, name='logout'),
 ]
