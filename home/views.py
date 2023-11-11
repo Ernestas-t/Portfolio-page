@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Project, Experience, Education, Skill, Tech
 from .forms import ExperienceForm, EducationForm, ProjectForm, SkillForm, TechForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -88,3 +89,37 @@ def addItem(request):
                 return redirect('resume')
         context = {'form': form, 'text': 'Professional Skill'}
     return render(request, 'home/add_item.html', context)
+
+@login_required()
+def deleteData(request, pk):
+    if request.GET.get('data') == 'experience':
+        experience = Experience.objects.get(id=pk)
+        if request.method == 'POST':
+            experience.delete()
+            return redirect('resume')
+        context = {'data': experience.role}
+    elif request.GET.get('data') == 'education':
+        education = Education.objects.get(id=pk)
+        if request.method == 'POST':
+            education.delete()
+            return redirect('resume')
+        context = {'data': education.degree_name}
+    elif request.GET.get('data') == 'skill':
+        skill = Skill.objects.get(id=pk)
+        if request.method == 'POST':
+            skill.delete()
+            return redirect('resume')
+        context = {'data': skill.name}
+    elif request.GET.get('data') == 'tech':
+        tech = Tech.objects.get(id=pk)
+        if request.method == 'POST':
+            tech.delete()
+            return redirect('resume')
+        context = {'data': tech.name}
+    elif request.GET.get('data') == 'project':
+        project = Project.objects.get(id=pk)
+        if request.method == 'POST':
+            project.delete()
+            return redirect('projects')
+        context = {'data': project.name}
+    return render(request, 'home/delete_data.html', context)

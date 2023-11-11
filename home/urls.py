@@ -10,4 +10,5 @@ urlpatterns = [
     path('update-education/', views.updateEducation, name='update-education'),
     path('update-project/', views.updateProject, name='update-project'),
     path('add-item/', views.addItem, name='add-item'),
+    path('delete-data/<str:pk>', views.deleteData, name='delete-data'),
 ]

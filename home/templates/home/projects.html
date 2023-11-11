@@ -9,26 +9,29 @@
                 <div class="text-center mb-5">
                     <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
                 </div>
-                <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-11 col-xl-9 col-xxl-8">
-                        <!-- Project Cards-->
-                        {% for project in projects %}
-                        <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
-                            <div class="card-body p-0">
-                                <div class="d-flex align-items-center">
-                                    <div class="p-5">
-                                        <a href="{{ project.project_url }}">
-                                            <h2 class="fw-bolder">{{ project.name}}</h2>
-                                        </a>
-                                        <p>{{ project.description }}</p>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-11 col-xl-9 col-xxl-8">
+                            <!-- Project Cards-->
+                            {% for project in projects %}
+                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                                <div class="card-body p-0">
+                                    <div class="d-flex flex-column-reverse flex-lg-row align-items-center">
+                                        <div class="p-5">
+                                            <a href="{{ project.project_url }}">
+                                                <h2 class="fw-bolder">{{ project.name }}</h2>
+                                            </a>
+                                            <p>{{ project.description }}</p>
+
+                                            <!-- Delete Button -->
+                                            <a href="{% url 'delete-data' project.id%}?data=project" class="btn btn-danger">Delete</a>
+                                        </div>
+                                        <img class="img-fluid" src="{{ project.image_url }}" alt="..." />
                                     </div>
-                                    <img class="img-fluid" src="{{ project.image_url}}" alt="..." />
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
                     </div>
-                </div>
                 {% if request.user.is_authenticated %}
                     <div class="text-center mb-3">
                         <a class="btn btn-secondary px-4 py-3 mx-auto" href="{% url 'update-project' %}">
