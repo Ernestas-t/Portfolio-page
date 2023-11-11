@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+
 import os
 import sys
 
@@ -26,6 +27,16 @@ SECRET_KEY = 'django-insecure-g*zx)dp((%e!w_j7_jv3a0!(-b*@yye$gfg-ux3u@izrrnnc*1
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+# Email Settings
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 
 ALLOWED_HOSTS = ['ed7f-88-119-116-22.ngrok-free.app', 'localhost', '127.0.0.1']
 

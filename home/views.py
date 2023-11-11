@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Project, Experience, Education, Skill, Tech
 from .forms import ExperienceForm, EducationForm, ProjectForm, SkillForm, TechForm
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
+from django.contrib import messages
+from django.conf import settings
 
 
 # Create your views here.
@@ -29,6 +31,19 @@ def projects(request):
 
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone_number = request.POST.get('phone_number')
+        message = request.POST.get('message')
+        send_mail(
+            subject=f"Portfolio message from: {name}",
+            message=f'Body:{message}\n Email:{email}',
+            from_email=email,
+            recipient_list=[settings.EMAIL_HOST_USER],
+            fail_silently=False,
+        )
+        messages.success(request, "Message Sent Successfully")
     return render(request, 'home/contact.html')
 
 
@@ -89,6 +104,7 @@ def addItem(request):
                 return redirect('resume')
         context = {'form': form, 'text': 'Professional Skill'}
     return render(request, 'home/add_item.html', context)
+
 
 @login_required()
 def deleteData(request, pk):
