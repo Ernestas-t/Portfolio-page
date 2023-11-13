@@ -13,4 +13,5 @@ urlpatterns = [
     path('delete-data/<str:pk>', views.deleteData, name='delete-data'),
     path('login/', views.loginUser, name='login'),
     path('logout/', views.logoutUser, name='logout'),
+    path('update-data/<str:pk>', views.updateData, name='update-data'),
 ]

@@ -9,7 +9,6 @@ from django.contrib import messages
 from django.conf import settings
 
 
-
 # Create your views here.
 
 def home(request):
@@ -70,6 +69,44 @@ def contact(request):
         )
         messages.success(request, "Message Sent Successfully")
     return render(request, 'home/contact.html')
+
+
+@login_required()
+def updateData(request, pk):
+    if request.GET.get('data') == 'experience':
+        experience = Experience.objects.get(id=pk)
+        form = ExperienceForm(instance=experience)
+
+        if request.method == 'POST':
+            form = ExperienceForm(request.POST, instance=experience)
+            if form.is_valid():
+                form.save()
+                return redirect('resume')
+
+        context = {'form': form}
+    elif request.GET.get('data') == 'education':
+        education = Education.objects.get(id=pk)
+        form = EducationForm(instance=education)
+
+        if request.method == 'POST':
+            form = EducationForm(request.POST, instance=education)
+            if form.is_valid():
+                form.save()
+                return redirect('resume')
+
+        context = {'form': form}
+    elif request.GET.get('data') == 'project':
+        project = Project.objects.get(id=pk)
+        form = ProjectForm(instance=project)
+
+        if request.method == 'POST':
+            form = ProjectForm(request.POST, instance=project)
+            if form.is_valid():
+                form.save()
+                return redirect('projects')
+
+        context = {'form': form}
+    return render(request, 'home/update_data.html', context)
 
 
 @login_required()

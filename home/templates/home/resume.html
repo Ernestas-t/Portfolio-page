@@ -39,6 +39,12 @@
                                 </div>
                                 <div class="col-lg-8">
                                     <div>{{ experience.description }}</div>
+                                    <!-- Button justified to the right -->
+                                    {% if request.user.is_authenticated %}
+                                    <div class="text-end mt-3">
+                                        <a href="{% url 'update-data' experience.id %}?data=experience" class="btn btn-secondary">Update</a>
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -80,7 +86,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-8"><div>{{ education.description }}</div></div>
+                                <div class="col-lg-8">
+                                    <div>{{ education.description }}</div>
+                                    <!-- Button justified to the right -->
+                                    {% if request.user.is_authenticated %}
+                                    <div class="text-end mt-3">
+                                        <a href="{% url 'update-data' education.id %}?data=education" class="btn btn-secondary">Update</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>

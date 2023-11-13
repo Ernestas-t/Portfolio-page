@@ -24,7 +24,10 @@
 
                                             <!-- Delete Button -->
                                             {% if request.user.is_authenticated %}
-                                            <a href="{% url 'delete-data' project.id%}?data=project" class="btn btn-danger">Delete</a>
+                                                <div>
+                                                    <a href="{% url 'update-data' project.id%}?data=project" class="btn btn-secondary">Update</a>
+                                                    <a href="{% url 'delete-data' project.id%}?data=project" class="btn btn-danger">Delete</a>
+                                                </div>
                                             {% endif %}
                                         </div>
                                         <img class="img-fluid" src="{{ project.image_url }}" alt="..." />
